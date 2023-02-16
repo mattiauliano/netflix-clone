@@ -10,9 +10,13 @@ import trailer from "../assets/trailer.mp4";
 import title from "../assets/title-trailer.webp";
 
 const Banner = () => {
+  // Mute / Unmute trailer
   const [muted, setMuted] = useState(true);
+  // Play video
   const [play, setPlay] = useState(true);
+  // Restart trailer
   const [restart, setRestart] = useState(false);
+  // Display trailer description
   const [display, setDisplay] = useState(true);
 
   function handleMuted() {
@@ -78,22 +82,21 @@ const Banner = () => {
       <div className="info-series">
         <img
           src={title}
-          alt="Serie Netflix Perfect Match"
+          alt="Netflix Serie - Perfect Match"
           className={`title-series ${display ? null : "translate-title"}`}
         />
         <p className={`fs-400 ${display ? null : "transparent-text"}`}>
-          Strategia e seduzione sono all'ordine del giorno in questo reality in
-          cui le coppie che dimostrano la loro compatibilità possono creare o
-          distruggere altre relazioni.
+          Couple who prove their compatibility gain the power to make or break
+          other matches in this strategic and seductive dating competition.
         </p>
         <div className="buttons-info-series">
           <button className="fs-600">
             <BsFillPlayFill size="2rem" />
-            Riproduci
+            Play
           </button>
           <button className="fs-600">
             <ImInfo />
-            Altre info
+            More info
           </button>
         </div>
       </div>

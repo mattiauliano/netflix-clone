@@ -32,30 +32,30 @@ const Navbar = () => {
             </a>
           </li>
           <li>
-            <a href="#">Serie TV</a>
+            <a href="#">TV Shows</a>
           </li>
           <li>
-            <a href="#">Film</a>
+            <a href="#">Movies</a>
           </li>
           <li>
-            <a href="#">Nuovi e popolari</a>
+            <a href="#">New & Popular</a>
           </li>
           <li>
-            <a href="#">La mia lista</a>
+            <a href="#">My List</a>
           </li>
           <li>
-            <a href="#">Sfoglia per lingua</a>
+            <a href="#">Browse by Languages</a>
           </li>
         </ul>
         <div className="dropdown-menu">
-          <p>Sfoglia</p>
+          <p>Browse</p>
           <IoMdArrowDropdown size="1.2rem" />
         </div>
       </nav>
       <div className="right-navbar">
         <GoSearch className="search-icon" size="1.3rem" />
         <a className="fs-200" href="#">
-          Bambini
+          Kids
         </a>
         <BiBell size="1.4rem" />
         <div className="avatar-arrow-container">
@@ -63,7 +63,6 @@ const Navbar = () => {
           <IoMdArrowDropdown size="1.2rem" className="dropdown-arrow" />
         </div>
       </div>
-      {/* <Hero /> */}
     </div>
   );
 };
