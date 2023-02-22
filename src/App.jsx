@@ -1,9 +1,16 @@
+import { useState, useEffect } from "react";
+// Styles
 import "./App.css";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import Banner from "./components/Banner";
-import Row from "./components/Row";
-
+import "./components/Navbar/Navbar.css";
+import "./components/Banner/Banner.css";
+import "./components/Row/ApiRow.css";
+import "./components/Footer/Footer.css";
+// Components
+import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
+import Banner from "./components/Banner/Banner";
+import ApiRow from "./components/Row/ApiRow";
+// API
 import requests from "./api/requests";
 
 function App() {
@@ -12,23 +19,23 @@ function App() {
       <Navbar />
       <Banner />
       <main>
-        <Row category="Trending Now" fetchUrl={requests.fetchTrending} />
-        <Row
+        <ApiRow category="Trending Now" fetchUrl={requests.fetchTrending} />
+        <ApiRow
           category="Netflix Originals"
           fetchUrl={requests.fetchNetflixOriginals}
         />
-        <Row
-          category="Top 20 Movies"
-          fetchUrl={requests.fetchTopRated}
+        <ApiRow
+          category="Top 20 Series"
+          fetchUrl={requests.fetchTopRatedTv}
           areVerticalImages={true}
         />
-        <Row category="Horror" fetchUrl={requests.fetchHorrorMovies} />
-        <Row category="Action" fetchUrl={requests.fetchActionMovies} />
-        <Row category="Comedy" fetchUrl={requests.fetchComedyMovies} />
-        <Row category="Romance" fetchUrl={requests.fetchRomanceMovies} />
-        <Row
+        <ApiRow category="Horror" fetchUrl={requests.fetchHorror} />
+        <ApiRow category="Action" fetchUrl={requests.fetchAction} />
+        <ApiRow category="Comedy" fetchUrl={requests.fetchComedy} />
+        <ApiRow category="Romance" fetchUrl={requests.fetchRomance} />
+        <ApiRow
           category="Top 20 Movies"
-          fetchUrl={requests.fetchTopRated}
+          fetchUrl={requests.fetchTopRatedMovies}
           areVerticalImages={true}
         />
       </main>

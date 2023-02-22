@@ -1,0 +1,374 @@
+/* - - - - - Navbar - - - - - */
+
+.navbar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding-inline: 3rem;
+  padding-block: 1rem;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 10%, transparent);
+  color: white;
+
+  position: fixed;
+  top: 0px;
+  z-index: 99;
+
+  transition-timing-function: ease-in;
+  transition: all 0.5s;
+}
+
+.navbar.active {
+  background-color: #141414;
+}
+
+.logo {
+  width: 5.5rem;
+  cursor: pointer;
+}
+
+.main-nav {
+  margin-right: auto;
+}
+
+.navbar-link {
+  color: #e5e5e5;
+  transition: color 300ms linear;
+}
+
+.actual-page {
+  color: white;
+  font-weight: 700;
+}
+
+.main-nav ul {
+  display: flex;
+  gap: 1.6rem;
+  color: var(--grey-200);
+}
+
+.dropdown-menu {
+  display: none;
+}
+
+/* Right Header */
+
+.right-navbar {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  position: relative;
+}
+
+.right-navbar a {
+  color: white;
+}
+
+.avatar-arrow-container {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+}
+
+.avatar {
+  width: 2rem;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.dropdown-arrow {
+  display: inline;
+  transition: transform 0.2s linear;
+  pointer-events: none;
+}
+
+.search-icon {
+  cursor: pointer;
+  margin-top: 3px;
+}
+
+#search-bar-input {
+  display: none;
+  background-color: transparent;
+  border: none;
+  font-size: 14px;
+  padding-left: 9px;
+  color: rgba(255, 255, 255, 0.719);
+}
+
+#search-bar-input::placeholder {
+  color: rgba(255, 255, 255, 0.719);
+}
+
+/* Notifications */
+
+.bell {
+  margin-bottom: 3px;
+  cursor: pointer;
+}
+
+.grey-arrow-decoration {
+  border-style: solid;
+  border-width: 0px 6px 9px 6px;
+  border-color: transparent transparent rgba(255, 255, 255, 0.819) transparent;
+  position: absolute;
+  display: none;
+}
+
+.arrow-panel {
+  top: 39px;
+  right: 81px;
+}
+
+.notifications-panel {
+  display: none;
+  flex-direction: column;
+  height: fit-content;
+  max-height: 90vh;
+  width: fit-content;
+  background-color: hsla(0, 0%, 0%, 0.8);
+  overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.819);
+  border-top: 2px solid rgba(255, 255, 255, 0.819);
+
+  position: fixed;
+  top: 4rem;
+  right: 7rem;
+
+  animation: fadeIn 0.3s;
+}
+
+.notification {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  padding-inline: 1rem;
+  padding-block: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.819);
+  color: #e5e5e5;
+  cursor: pointer;
+}
+
+.notifications-panel .notification:last-child {
+  border-bottom: none;
+}
+
+.notification-image {
+  background-position: bottom;
+  background-size: cover;
+
+  border-radius: 6px;
+  width: 33%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.notifications-panel .notification:nth-child(2) .notification-image,
+.notifications-panel .notification:nth-child(3) .notification-image,
+.notifications-panel .notification:nth-child(4) .notification-image {
+  background-position: center;
+}
+
+.notification-description {
+  max-width: 55%;
+  cursor: pointer;
+}
+
+.notification-description h2 {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.25rem;
+  cursor: pointer;
+}
+
+.notification-show {
+  margin-bottom: 4px;
+}
+
+.notification-time-ago {
+  font-size: 10px;
+  color: #aaaaaa;
+  cursor: pointer;
+}
+
+/* Profile Menu */
+
+.arrow-profile-menu {
+  top: 39px;
+  right: 34px;
+}
+
+.profile-menu {
+  --gap-menu: 1.3rem;
+  --vertical-gap-per-section: 0.7rem;
+  --horizontal-gap-per-section: 0.5rem;
+
+  display: none;
+  flex-direction: column;
+  gap: var(--gap-menu);
+  background-color: hsla(0, 0%, 0%, 0.853);
+  padding-inline: 0.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.234);
+  font-size: 12px;
+  cursor: pointer;
+
+  position: fixed;
+  top: 4rem;
+  right: 3.4rem;
+
+  animation: fadeIn 0.3s;
+}
+
+.accounts {
+  padding-top: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--vertical-gap-per-section);
+}
+
+.account {
+  display: flex;
+  gap: var(--horizontal-gap-per-section);
+  align-items: center;
+}
+
+.actions-profile-menu {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vertical-gap-per-section);
+}
+
+.task-profile-menu {
+  display: flex;
+  gap: var(--horizontal-gap-per-section);
+  align-items: center;
+  margin-left: 4px;
+}
+
+.task-profile-menu p {
+  margin-left: 5px;
+}
+
+.sign-out {
+  text-align: center;
+  padding: 0.85rem 2.5rem;
+}
+
+.sign-out::before {
+  content: "";
+  position: absolute;
+  bottom: 3rem;
+  right: 0;
+  height: 2px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.234);
+}
+
+/* States */
+
+.navbar-link:hover {
+  color: rgba(255, 255, 255, 0.719);
+}
+
+.rotate-dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+#search-bar-input:focus {
+  outline: none;
+}
+
+.notification:hover {
+  background-color: #141414;
+}
+
+.profile-menu div:hover:has(p) > p {
+  text-decoration: underline;
+}
+
+/* Media queries */
+
+@media screen and (max-width: 800px) {
+  .navbar {
+    padding-block: 0.5rem;
+    padding-inline: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .main-nav ul,
+  .right-navbar a {
+    font-size: 12px;
+  }
+
+  .main-nav ul {
+    margin-left: -20px;
+    gap: 1rem;
+  }
+
+  .right-navbar {
+    gap: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .right-navbar a {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .navbar {
+    padding-block: 0.3rem;
+    padding-inline: 2.1rem;
+  }
+
+  .dropdown-arrow {
+    display: none;
+  }
+
+  .logo {
+    width: 4rem;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .navbar ul {
+    display: none;
+  }
+
+  .dropdown-menu {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    margin-left: 1.5rem;
+    font-size: 0.7rem;
+    cursor: pointer;
+  }
+}
+
+@media (min-width: 886px) and (max-width: 1060px) {
+  .navbar ul {
+    font-size: 10px;
+  }
+}
+
+/* Animations */
+
+@keyframes reveal {
+  from {
+    clip-path: inset(0 0 0 100%);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

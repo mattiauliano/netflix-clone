@@ -6,8 +6,8 @@ import { SlVolumeOff } from "react-icons/sl";
 import { SlVolume2 } from "react-icons/sl";
 import { MdOutlineRestartAlt } from "react-icons/md";
 
-import trailer from "../assets/trailer.mp4";
-import title from "../assets/title-trailer.webp";
+import trailer from "../../assets/trailer.mp4";
+import title from "../../assets/title-trailer.webp";
 
 const Banner = () => {
   // Mute / Unmute trailer
@@ -113,6 +113,7 @@ const Banner = () => {
 
         <div className="pegi fs-600">13+</div>
       </div>
+      <div className="overlay-video"></div>
     </header>
   );
 };

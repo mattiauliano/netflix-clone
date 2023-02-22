@@ -1,0 +1,428 @@
+/* - - - - - Row - - - - - */
+
+/* Slider */
+
+.slider-container {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  overflow-x: hidden;
+  overflow: visible;
+}
+
+.api-row-slider {
+  display: flex;
+  width: calc(100% - 2 * var(--slider-padding));
+  transition: all 700ms ease-in-out;
+}
+
+/* Images Preview Shows */
+
+.image-preview {
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  width: 100%;
+  border-radius: 3px;
+}
+
+.vertical-image-container {
+  flex: 0 0 calc(100% / var(--items-per-screen));
+  max-width: calc(100% / var(--items-per-screen));
+  aspect-ratio: 16/11.5;
+  padding-inline: 0.2rem;
+  border-radius: 3px;
+
+  position: relative;
+}
+
+.vertical-image-preview {
+  flex: 0 0 calc(100% / var(--items-per-screen));
+  width: 50%;
+  height: 100%;
+  object-fit: cover;
+  padding-inline: 0.2rem;
+  border-radius: 3px;
+
+  position: absolute;
+  right: 0;
+}
+
+/* Rank Numbers - BAD PRACTICE, USE SVGs */
+
+.position {
+  font-size: 18rem;
+  padding: 0;
+  margin: 0;
+  line-height: 240px;
+  text-shadow: -2px -2px 0 #484848, 2px -2px 0 #484848, -2px 2px 0 #484848,
+    2px 2px 0 #484848;
+  position: absolute;
+  bottom: 0;
+  left: 2rem;
+}
+
+.double-digit {
+  font-size: 11rem;
+  left: 0;
+  letter-spacing: -0.8rem;
+}
+
+/* Banner Zoom */
+
+.horizontal-show-container {
+  flex: 0 0 calc(100% / var(--items-per-screen));
+  max-width: calc(100% / var(--items-per-screen));
+  padding-inline: 0.2rem;
+  position: relative;
+  transition: all 0.2s ease-out;
+}
+
+.banner-hover-zoom {
+  display: none;
+  flex-direction: column;
+  gap: 0.8rem;
+  width: calc(100% - 0.4rem);
+  background-color: #141414;
+  opacity: 0;
+
+  padding: 0.8rem;
+  padding-bottom: 1.2rem;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+
+  position: fixed;
+}
+
+.zoom-buttons {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.zoom-buttons .review-buttons {
+  margin-right: auto;
+}
+
+.zoom-buttons button {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  width: 28px;
+  height: 28px;
+  border: 2px solid rgba(201, 201, 201, 0.652);
+  border-radius: 50%;
+
+  cursor: pointer;
+}
+
+.zoom-buttons button:first-child {
+  color: black;
+  border: 2px solid white;
+  background-color: white;
+}
+
+.zoom-infos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.zoom-infos-generals,
+.zoom-infos-genres {
+  display: flex;
+  gap: 0.5rem;
+  color: white;
+  font-size: 12px;
+}
+
+.zoom-infos__compatibility {
+  color: #49d66d;
+}
+
+.zoom-infos__pegi {
+}
+
+/***********************************************/
+
+.horizontal-show-container:hover {
+  translate: 0 -65%;
+  z-index: 1;
+  transition-delay: 1s;
+}
+
+.horizontal-show-container:hover .image-preview {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-bottom: -2px;
+}
+
+/* .horizontal-show-container:hover .banner-hover-zoom {
+  opacity: 1;
+} */
+
+.api-row-container:has(.horizontal-show-container:hover) {
+  z-index: 1;
+}
+
+/************************************************/
+
+/* Handle slider */
+
+.handle {
+  display: flex;
+  width: var(--slider-padding);
+  background-color: hsla(0, 0%, 8%, 0.5);
+  z-index: 10;
+  align-items: center;
+  justify-content: center;
+  color: white;
+
+  transition: background-color 200ms linear;
+}
+
+.right-handle {
+  margin-left: 3px;
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+}
+
+.left-handle {
+  margin-right: 3px;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+  opacity: 0;
+}
+
+.handle-slider {
+  opacity: 0;
+  transition: transform 200ms linear;
+}
+
+/* Category / Index bar */
+
+.category-index-bar {
+  display: flex;
+  justify-content: space-between;
+  padding-inline: 3.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.category {
+  color: #e5e5e5;
+  font-weight: 500;
+  margin-bottom: -0.3rem;
+  font-size: 16px;
+  line-height: 0px;
+  padding-bottom: 7px;
+  cursor: pointer;
+}
+
+.index-bar {
+  display: flex;
+  gap: 0.1rem;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+}
+
+.bar-item {
+  width: 1rem;
+  height: 2px;
+  background-color: rgba(51, 51, 51, 0.6);
+}
+
+.category-index-bar div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.category-blue-arrow {
+  color: #11b8cb;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateX(-63px);
+
+  transition: transform 0.2s ease-in;
+}
+
+.category-explore-all {
+  color: #11b8cb;
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 3px;
+
+  transform: translateX(-5px);
+  opacity: 0;
+
+  transition: transform 0.5s ease-out, opacity 0.3s linear;
+}
+
+/* States */
+
+.handle:hover {
+  background-color: hsla(0, 0%, 8%, 0.727);
+}
+
+.handle-slider:hover {
+  transform: scale(1.3);
+}
+
+.slider-container:hover .handle-slider {
+  opacity: 1;
+}
+
+.bar-item.active {
+  background-color: #fff;
+}
+
+.api-row-container:hover .category-blue-arrow {
+  opacity: 1;
+}
+
+.category-index-bar div:first-child:hover .category-explore-all {
+  transform: translateX(0px);
+  opacity: 1;
+}
+
+.category-index-bar div:first-child:hover .category-blue-arrow {
+  transform: translateX(-7px);
+  scale: 0.8;
+}
+
+.horizontal-show-container:hover:has(.banner-hover-zoom) .banner-hover-zoom {
+  display: flex;
+}
+
+/***********************************************/
+
+.horizontal-show-container:hover {
+  transform: scale(1.7);
+  z-index: 1;
+}
+
+.api-row-container:has(.horizontal-show-container:hover) {
+  z-index: 1;
+}
+
+/************************************************/
+
+/* Media queries */
+
+@media screen and (max-width: 800px) {
+  .handle {
+    display: none;
+  }
+
+  .slider-container {
+    overflow-x: scroll;
+  }
+
+  .slider-container::-webkit-scrollbar {
+    width: 0 !important;
+  }
+
+  .category-index-bar .index-bar {
+    display: none;
+  }
+
+  .category-index-bar h2 {
+    font-weight: 500;
+    margin-left: -2rem;
+    font-size: 1rem;
+  }
+}
+
+/* Rank Numbers (Should use Netflix SVGs, easiest than text to get responsiveness) - BAD PRACTICE USE SVGs */
+
+@media (min-width: 1400px) and (max-width: 1649px) {
+  .position {
+    font-size: 14rem;
+    left: 2rem;
+    bottom: -20px;
+  }
+
+  .double-digit {
+    font-size: 10rem;
+    bottom: -20px;
+    left: 0;
+    letter-spacing: -0.8rem;
+  }
+}
+
+@media (min-width: 1145px) and (max-width: 1399px) {
+  .position {
+    font-size: 10rem;
+    left: 2rem;
+    bottom: -30px;
+  }
+
+  .double-digit {
+    font-size: 9rem;
+    left: 0;
+    bottom: -30px;
+    letter-spacing: -0.7rem;
+  }
+}
+
+@media (min-width: 870px) and (max-width: 1144px) {
+  .position {
+    font-size: 8rem;
+    left: 2rem;
+    bottom: -40px;
+  }
+
+  .double-digit {
+    font-size: 7rem;
+    left: 0;
+    bottom: -40px;
+    letter-spacing: -0.7rem;
+  }
+}
+
+@media (max-width: 869px) {
+  .position {
+    font-size: 6rem;
+    left: 2.5rem;
+    bottom: -60px;
+  }
+
+  .double-digit {
+    font-size: 6rem;
+    left: 0;
+    bottom: -60px;
+    letter-spacing: -0.7rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .position {
+    font-size: 11rem;
+    left: 2.5rem;
+    bottom: -20px;
+  }
+
+  .double-digit {
+    font-size: 8.5rem;
+    left: 0;
+    bottom: -20px;
+    letter-spacing: -0.7rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .position {
+    font-size: 8rem;
+    left: 1rem;
+    bottom: -50px;
+  }
+
+  .double-digit {
+    font-size: 6.5rem;
+    left: 0;
+    bottom: -50px;
+    letter-spacing: -0.7rem;
+  }
+}
