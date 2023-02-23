@@ -96,10 +96,16 @@
 .zoom-buttons {
   display: flex;
   gap: 0.35rem;
+  position: relative;
 }
 
-.zoom-buttons .review-buttons {
-  margin-right: auto;
+.zoom-buttons__show-more {
+  margin-left: auto;
+}
+
+.review-buttons {
+  display: flex;
+  height: 30px;
 }
 
 .zoom-buttons button {
@@ -108,18 +114,55 @@
   align-items: center;
   justify-content: center;
   color: white;
-  width: 28px;
-  height: 28px;
-  border: 2px solid rgba(201, 201, 201, 0.652);
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
+  border: none;
 
   cursor: pointer;
 }
 
-.zoom-buttons button:first-child {
+.zoom-buttons > button {
+  border: 2px solid rgba(201, 201, 201, 0.652);
+}
+
+.hover-button {
+  border: none;
+  background-color: #232323;
+  height: 20px;
+  width: 20px;
+  position: absolute;
+}
+
+.review-buttons .hover-button:nth-child(2) {
+  right: 33px;
+}
+
+#zoom-buttons__play {
   color: black;
   border: 2px solid white;
   background-color: white;
+}
+
+.review-buttons__dislike {
+  rotate: 180deg;
+  left: 0px;
+}
+
+.review-buttons__top {
+  position: absolute;
+  right: 0;
+}
+
+.review-buttons__top :first-child {
+  position: absolute;
+  left: 6px;
+  bottom: 10px;
+}
+
+.review-buttons__top :last-child {
+  position: absolute;
+  right: 6px;
 }
 
 .zoom-infos {
@@ -296,8 +339,6 @@
   display: flex;
 }
 
-/***********************************************/
-
 .horizontal-show-container:hover {
   transform: scale(1.7);
   z-index: 1;
@@ -307,7 +348,14 @@
   z-index: 1;
 }
 
-/************************************************/
+.hover-button:hover,
+.zoom-buttons button:hover {
+  background-color: #353535;
+}
+
+#zoom-buttons__play:hover {
+  background-color: rgb(226, 226, 226);
+}
 
 /* Media queries */
 
