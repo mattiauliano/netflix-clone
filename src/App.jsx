@@ -25,7 +25,7 @@ function App() {
           fetchUrl={requests.fetchNetflixOriginals}
         />
         <ApiRow
-          category="Top 20 Series"
+          category="Top 10 Series"
           fetchUrl={requests.fetchTopRatedTv}
           areVerticalImages={true}
         />
@@ -34,7 +34,7 @@ function App() {
         <ApiRow category="Comedy" fetchUrl={requests.fetchComedy} />
         <ApiRow category="Romance" fetchUrl={requests.fetchRomance} />
         <ApiRow
-          category="Top 20 Movies"
+          category="Top 10 Movies"
           fetchUrl={requests.fetchTopRatedMovies}
           areVerticalImages={true}
         />

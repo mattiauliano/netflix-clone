@@ -18,7 +18,11 @@ const ApiRow = ({ category, fetchUrl, areVerticalImages = false }) => {
     // Fetch data using the fetchUrl prop
     async function fetchData() {
       const request = await axios.get(fetchUrl);
-      setShows(request.data.results);
+      setShows(
+        !areVerticalImages
+          ? request.data.results
+          : request.data.results.slice(0, 10)
+      );
       return request;
     }
 
@@ -62,13 +66,20 @@ const ApiRow = ({ category, fetchUrl, areVerticalImages = false }) => {
     ></div>
   ));
 
+  // Per each itemsPerScreen, take the first one of the list and translate it on hover
+  // itemsPerScreen === 5 --> 0,5,10,15 translate these to the right for web page padding rem
+
   return (
     <div className="api-row-container">
       <div className="category-index-bar">
         <div>
           <h2 className="category">{category}</h2>
-          <div className="category-explore-all">Explore All</div>
-          <IoIosArrowForward className="category-blue-arrow" />
+          {areVerticalImages ? null : (
+            <>
+              <div className="category-explore-all">Explore All</div>
+              <IoIosArrowForward className="category-blue-arrow" />
+            </>
+          )}
         </div>
         <div
           className="index-bar"
@@ -84,6 +95,8 @@ const ApiRow = ({ category, fetchUrl, areVerticalImages = false }) => {
         progressBarItemCount={progressBarItemCount}
         shows={shows}
         areVerticalImages={areVerticalImages}
+        itemsToTranslateRight={[0, 5, 10, 15]}
+        itemsToTranslateLeft={[4, 9, 14, 19]}
       />
     </div>
   );

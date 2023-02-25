@@ -10,9 +10,10 @@ const Slider = ({
   progressBarItemCount,
   shows,
   areVerticalImages,
+  itemsToTranslateRight,
+  itemsToTranslateLeft,
 }) => {
   const [isNextClicked, setIsNextClicked] = useState(false);
-  const reversedOrderShows = [...shows].reverse().map((show) => show);
 
   function displayCard(showsToMapThrough) {
     const mappedShows = showsToMapThrough.map((show) => {
@@ -26,9 +27,16 @@ const Slider = ({
         />
       ) : (
         <HorizontalShow
+          showIndex={showIndex}
           showUrlPath={show.backdrop_path}
           key={show.id}
           showTitle={show.title}
+          showGenres={show.genre_ids}
+          isForAdults={show.adult}
+          isAMovie={show.media_type === "movie"}
+          compatibility={Math.floor(Math.random() * (100 - 60 + 1) + 60)}
+          itemsToTranslateRight={itemsToTranslateRight}
+          itemsToTranslateLeft={itemsToTranslateLeft}
         />
       );
     });

@@ -2,14 +2,32 @@ import React, { useState, useEffect } from "react";
 import { FaPlay } from "react-icons/fa";
 import { AiOutlineLike, AiOutlineCheck } from "react-icons/ai";
 import { IoMdArrowDropdown, IoMdAdd } from "react-icons/io";
+import genreIds from "../../api/genres";
 
-const HorizontalShow = ({ showUrlPath, showTitle }) => {
+const HorizontalShow = ({
+  showIndex,
+  showUrlPath,
+  showTitle,
+  showGenres,
+  isForAdults,
+  isAMovie,
+  compatibility,
+  itemsToTranslateRight,
+  itemsToTranslateLeft,
+}) => {
   const [isHoverShowFor1s, setIsHoveFor1s] = useState(false);
   const [isHoverShow, setIsHoverShow] = useState(false);
   // Show buttons states
   const [addedToList, setAddedToList] = useState(false);
   const [isHoverReviewDelay, setIsHoverReviewDelay] = useState(false);
   const [isHoverReview, setIsHoverReview] = useState(false);
+
+  const [isToTranslateRight, setIsToTranslateRight] = useState(false);
+  const [isToTranslateLeft, setIsToTranslateLeft] = useState(false);
+
+  useEffect(() => {
+    checkIndexForTranslate();
+  }, [showIndex]);
 
   useEffect(() => {
     const timer =
@@ -33,6 +51,23 @@ const HorizontalShow = ({ showUrlPath, showTitle }) => {
     };
   }, [isHoverReview]);
 
+  /* Functions */
+
+  function checkIndexForTranslate() {
+    for (let i = 0; i < itemsToTranslateRight.length; i++) {
+      if (itemsToTranslateRight[i] === showIndex) {
+        setIsToTranslateRight(true);
+      }
+    }
+    for (let i = 0; i < itemsToTranslateLeft.length; i++) {
+      if (itemsToTranslateLeft[i] === showIndex) {
+        setIsToTranslateLeft(true);
+      }
+    }
+  }
+
+  /* States */
+
   function handleMouseEnter() {
     setIsHoverShow(true);
   }
@@ -44,14 +79,6 @@ const HorizontalShow = ({ showUrlPath, showTitle }) => {
 
   function handleAddedToList() {
     setAddedToList(!addedToList);
-  }
-
-  function handleMouseEnterLike() {
-    setIsHoverLike(true);
-  }
-
-  function handleMouseLeaveLike() {
-    setIsHoverLike(false);
   }
 
   function handleMouseEnterReview() {
@@ -66,7 +93,9 @@ const HorizontalShow = ({ showUrlPath, showTitle }) => {
   const BASE_URL = "https://image.tmdb.org/t/p/original/";
   return (
     <div
-      className="horizontal-show-container"
+      className={`horizontal-show-container ${
+        isToTranslateRight && isHoverShow ? "translate-to-right" : null
+      } ${isToTranslateLeft && isHoverShow ? "translate-to-left" : null}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       style={isHoverShowFor1s ? { zIndex: 1 } : null}
@@ -84,7 +113,7 @@ const HorizontalShow = ({ showUrlPath, showTitle }) => {
           <button id="zoom-buttons__play">
             <FaPlay size={"10px"} />
           </button>
-          <button onClick={handleAddedToList}>
+          <button className="zoom-buttons__add" onClick={handleAddedToList}>
             {addedToList ? (
               <AiOutlineCheck size={"12px"} />
             ) : (
@@ -129,8 +158,6 @@ const HorizontalShow = ({ showUrlPath, showTitle }) => {
                   ? null
                   : { border: "2px solid rgba(201, 201, 201, 0.652)" }
               }
-              onMouseEnter={handleMouseEnterLike}
-              onMouseLeave={handleMouseLeaveLike}
             >
               <AiOutlineLike size={isHoverReviewDelay ? "14px" : "12px"} />
             </button>
@@ -149,15 +176,21 @@ const HorizontalShow = ({ showUrlPath, showTitle }) => {
         </div>
         <div className="zoom-infos">
           <div className="zoom-infos-generals">
-            <p className="zoom-infos__compatibility">93% Match</p>
-            <p className="zoom-infos__pegi">13+</p>
-            <p className="zoom-infos__duration">1h 43m</p>
+            <p className="zoom-infos__compatibility">{compatibility}% Match</p>
+            <p className="zoom-infos__pegi">{`${
+              isForAdults ? "18+" : "13+"
+            }`}</p>
+            <p className="zoom-infos__duration">{`${
+              isAMovie ? "1h 43m" : "16 Episodes"
+            }`}</p>
             <p className="zoom-infos__hd">HD</p>
           </div>
           <div className="zoom-infos-genres">
-            <p>Genre</p>
-            <p>Genre</p>
-            <p>Genre</p>
+            <p>{genreIds[showGenres[0]]}</p>
+            {showGenres[1] && <div className="genres-dot"></div>}
+            <p>{genreIds[showGenres[1]]}</p>
+            {showGenres[2] && <div className="genres-dot"></div>}
+            <p>{genreIds[showGenres[2]]}</p>
           </div>
         </div>
       </div>
