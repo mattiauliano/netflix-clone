@@ -84,9 +84,16 @@
 @media screen and (max-width: 800px) {
   .footer nav div {
     flex-direction: column;
+    gap: 0.4rem;
   }
 
   .footer {
     margin-top: 8rem;
+  }
+}
+
+@media (max-width: 460px) {
+  .footer {
+    padding-left: 5rem;
   }
 }

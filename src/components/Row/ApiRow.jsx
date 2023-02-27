@@ -13,6 +13,10 @@ const ApiRow = ({ category, fetchUrl, areVerticalImages = false }) => {
 
   const [isHoverSlider, setIsHoverSlider] = useState(false);
 
+  /* TODO - Refactor with a non-hardcoded method */
+  const itemsToTranslateRight = [0, 5, 10, 15];
+  const itemsToTranslateLeft = [4, 9, 14, 19];
+
   // Get Banners every time fetchUrl gets updated
   useEffect(() => {
     // Fetch data using the fetchUrl prop
@@ -66,9 +70,6 @@ const ApiRow = ({ category, fetchUrl, areVerticalImages = false }) => {
     ></div>
   ));
 
-  // Per each itemsPerScreen, take the first one of the list and translate it on hover
-  // itemsPerScreen === 5 --> 0,5,10,15 translate these to the right for web page padding rem
-
   return (
     <div className="api-row-container">
       <div className="category-index-bar">
@@ -92,11 +93,12 @@ const ApiRow = ({ category, fetchUrl, areVerticalImages = false }) => {
         sliderIndex={sliderIndex}
         setSliderIndex={setSliderIndex}
         setIsHoverSlider={setIsHoverSlider}
+        itemsPerScreen={itemsPerScreen}
         progressBarItemCount={progressBarItemCount}
         shows={shows}
         areVerticalImages={areVerticalImages}
-        itemsToTranslateRight={[0, 5, 10, 15]}
-        itemsToTranslateLeft={[4, 9, 14, 19]}
+        itemsToTranslateRight={itemsToTranslateRight}
+        itemsToTranslateLeft={itemsToTranslateLeft}
       />
     </div>
   );

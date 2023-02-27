@@ -14,6 +14,7 @@ const HorizontalShow = ({
   compatibility,
   itemsToTranslateRight,
   itemsToTranslateLeft,
+  itemsPerScreen,
 }) => {
   const [isHoverShowFor1s, setIsHoveFor1s] = useState(false);
   const [isHoverShow, setIsHoverShow] = useState(false);

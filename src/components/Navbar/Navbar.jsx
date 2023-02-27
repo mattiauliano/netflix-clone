@@ -9,20 +9,29 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import logo from "../../assets/text-logo.svg";
 import avatar from "../../assets/avatar.png";
 
-const Navbar = () => {
-  const [navbar, setNavbar] = useState(false);
+const Navbar = ({ windowWidth }) => {
+  const [navbarBg, setNavbarBg] = useState(false);
   const [search, setSearch] = useState(false);
   // Bell States
   const [isHoverBell, setIsHoverBell] = useState(false);
   const [isHoverPanel, setIsHoverPanel] = useState(false);
+  // Profile
   const [isHoverProfileSection, setIsHoverProfileSection] = useState(false);
   const [isHoverProfileMenu, setIsHoverProfileMenu] = useState(false);
   // Use ref to select an element
   const targetRef = useRef(null);
+  // Display Browse Menu state
+  const [displayBrowseMenu, setDisplayBrowseMenu] = useState(false);
+
+  useEffect(() => {
+    if (windowWidth > 900) {
+      setDisplayBrowseMenu(false);
+    }
+  }, [windowWidth]);
 
   // Change background color on scroll
   function changeBackground() {
-    window.scrollY >= 100 ? setNavbar(true) : setNavbar(false);
+    window.scrollY >= 100 ? setNavbarBg(true) : setNavbarBg(false);
   }
 
   useEffect(() => {
@@ -66,8 +75,6 @@ const Navbar = () => {
     setSearch((prevSearchState) => !prevSearchState);
   }
 
-  /* TODO: REFACTOR BELL-AVATAR HOVER */
-
   function handleMouseEnter(e) {
     if (e.target.id === "bell") {
       setIsHoverBell(true);
@@ -99,8 +106,12 @@ const Navbar = () => {
     }
   }
 
+  function handleDropDownMenu() {
+    setDisplayBrowseMenu((prevState) => !prevState);
+  }
+
   return (
-    <div className={navbar ? "navbar active" : "navbar"}>
+    <div className={navbarBg ? "navbar active" : "navbar"}>
       <img src={logo} alt="" className="logo" />
       <nav className="main-nav">
         <ul role="list" className="fs-200">
@@ -135,10 +146,64 @@ const Navbar = () => {
             </a>
           </li>
         </ul>
-        <div className="dropdown-menu">
+        <div className="dropdown-menu" onClick={handleDropDownMenu}>
           <p>Browse</p>
           <IoMdArrowDropdown size="1.2rem" />
         </div>
+      </nav>
+      <div
+        className="grey-arrow-decoration"
+        id="mobile-navbar-arrow"
+        style={
+          displayBrowseMenu
+            ? {
+                display: "block",
+              }
+            : null
+        }
+      ></div>
+      <nav
+        className="mobile-navbar"
+        style={
+          displayBrowseMenu
+            ? {
+                display: "block",
+              }
+            : null
+        }
+      >
+        <ul role="list" className="fs-200">
+          <li>
+            <a className="actual-page" href="/">
+              Home
+            </a>
+          </li>
+          <li>
+            <a className="navbar-link" href="/">
+              TV Shows
+            </a>
+          </li>
+          <li>
+            <a className="navbar-link" href="/">
+              Movies
+            </a>
+          </li>
+          <li>
+            <a className="navbar-link" href="/">
+              New & Popular
+            </a>
+          </li>
+          <li>
+            <a className="navbar-link" href="/">
+              My List
+            </a>
+          </li>
+          <li>
+            <a className="navbar-link" href="/">
+              Browse by Languages
+            </a>
+          </li>
+        </ul>
       </nav>
       <div className="right-navbar">
         <div

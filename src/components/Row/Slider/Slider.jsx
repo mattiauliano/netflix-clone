@@ -12,6 +12,7 @@ const Slider = ({
   areVerticalImages,
   itemsToTranslateRight,
   itemsToTranslateLeft,
+  itemsPerScreen,
 }) => {
   const [isNextClicked, setIsNextClicked] = useState(false);
 
@@ -37,6 +38,7 @@ const Slider = ({
           compatibility={Math.floor(Math.random() * (100 - 60 + 1) + 60)}
           itemsToTranslateRight={itemsToTranslateRight}
           itemsToTranslateLeft={itemsToTranslateLeft}
+          itemsPerScreen={itemsPerScreen}
         />
       );
     });

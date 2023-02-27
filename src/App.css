@@ -95,29 +95,14 @@ main {
 
 /* Media queries */
 
-@media screen and (min-width: 1101px) {
-  /* main {
-    top: -130px;
-  }
-
-  main::before {
-    top: 50px;
-    background: linear-gradient(0deg, #141414 30%, transparent);
-  } */
-}
-
 @media screen and (max-width: 1100px) {
   :root {
     --items-per-screen: 4;
   }
 
-  /* main {
+  main {
     top: -110px;
   }
-
-  main::before {
-    top: 32px;
-  } */
 }
 
 @media screen and (max-width: 800px) {
@@ -125,15 +110,11 @@ main {
     --items-per-screen: 3;
     --slider-padding: 0.5rem;
   }
-  /* 
+
   main {
     top: 4rem;
-    gap: 0.8rem;
+    gap: 1rem;
   }
-
-  main::before {
-    display: none;
-  } */
 }
 
 @media screen and (max-width: 500px) {

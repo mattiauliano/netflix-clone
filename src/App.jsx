@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 // Styles
 import "./App.css";
 import "./components/Navbar/Navbar.css";
@@ -12,11 +11,26 @@ import Banner from "./components/Banner/Banner";
 import ApiRow from "./components/Row/ApiRow";
 // API
 import requests from "./api/requests";
+// React
+import { useState, useEffect } from "react";
 
 function App() {
+  // Window width state
+  const [windowWidth, setWindowWidth] = useState(0);
+
+  useEffect(() => {
+    function handleWindowWidth() {
+      setWindowWidth(window.innerWidth);
+    }
+    window.addEventListener("resize", handleWindowWidth);
+    return () => {
+      window.removeEventListener("resize", handleWindowWidth);
+    };
+  });
+
   return (
     <div className="app">
-      <Navbar />
+      <Navbar windowWidth={windowWidth} />
       <Banner />
       <main>
         <ApiRow category="Trending Now" fetchUrl={requests.fetchTrending} />
